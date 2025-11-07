@@ -1,7 +1,6 @@
 # --- Archivo: tests/testthat/test-descargar_y_leer_estacion.R ---
 
 # Usamos context() para agrupar los tests de esta función
-context("Pruebas para descargar_y_leer_estacion")
 
 test_that("la función descarga, lee y luego lee localmente", {
 
@@ -75,14 +74,11 @@ test_that("la función falla correctamente con un ID inválido", {
   # y luego `readr::read_csv` fallará (dando un error)
   # porque el archivo descargado estará vacío o corrupto.
 
-  # Esperamos que la función se detenga con un error
+  # Esperamos que la función se detenga con un warning
   expect_error(
-    descargar_y_leer_estacion(
-      id_estacion = id_invalido,
-      ruta_guardado = ruta_temporal_csv
-    )
+    descargar_y_leer_estacion(id = "ESTACION_FALSA_1S3",
+                              ruta_guardado = tempfile(fileext = ".csv"))
   )
-
   # --- LIMPIEZA ---
   if (file.exists(ruta_temporal_csv)) {
     file.remove(ruta_temporal_csv)

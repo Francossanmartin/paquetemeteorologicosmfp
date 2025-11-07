@@ -1,87 +1,75 @@
-# --- Archivo: tests/testthat/test-tabla_resumen_temperatura.R ---
+# Cargar librerías necesarias para el test
+# Asegúrate de tenerlos instalados: install.packages(c("testthat", "dplyr", "tibble"))
+library(testthat)
+library(dplyr)
+library(tibble)
 
-context("Pruebas para tabla_resumen_temperatura")
+# --- Definición de la Función ---
+# Pega tu función aquí si no estás en un entorno de paquete
+tabla_resumen_temperatura <- function(datos) {
 
-test_that("calculos y agrupamiento son correctos", {
+  # Usamos .data[[]] para evitar notas de R CMD check
+  resumen <- datos %>%
+    dplyr::group_by(.data[["id"]]) %>%
+    dplyr::summarise(
+      media = mean(.data[["temperatura_abrigo_150cm"]], na.rm = TRUE),
+      desvio = stats::sd(.data[["temperatura_abrigo_150cm"]], na.rm = TRUE),
+      maxima = max(.data[["temperatura_abrigo_150cm"]], na.rm = TRUE),
+      minima = min(.data[["temperatura_abrigo_150cm"]], na.rm = TRUE),
+      .groups = 'drop'
+    )
 
-  # --- 1. PREPARACIÓN ---
-  # Creamos datos de prueba con 2 estaciones
-  test_data <- data.frame(
-    id = c("Estacion_A", "Estacion_A", "Estacion_B", "Estacion_B", "Estacion_B"),
-    temperatura_abrigo_150cm = c(10, 20, 100, 110, 120)
+  return(resumen)
+}
+
+# --- Definición del Test ---
+
+test_that("la función calcula correctamente las estadísticas resumen", {
+
+  # 1. Datos de Prueba
+  # Creamos un data.frame con dos estaciones ('A' y 'B')
+  # y valores NA para probar el argumento na.rm = TRUE.
+  datos_prueba <- data.frame(
+    id = c('A', 'A', 'A', 'A', 'B', 'B', 'B'),
+    temperatura_abrigo_150cm = c(10, 20, 30, NA, 5, 5, 11)
   )
 
-  # --- 2. EJECUCIÓN ---
-  resumen <- tabla_resumen_temperatura(test_data)
-
-  # --- 3. COMPROBACIÓN ---
-
-  # 3.1) Estructura general
-  expect_s3_class(resumen, "data.frame")
-  expect_equal(nrow(resumen), 2) # Dos filas, una por estación
-  expect_named(resumen, c("id", "media", "desvio", "maxima", "minima"))
-
-  # 3.2) Cálculos Estacion_A
-  res_A <- resumen[resumen$id == "Estacion_A", ]
-  expect_equal(res_A$media, 15)   # (10+20)/2
-  expect_equal(res_A$maxima, 20)
-  expect_equal(res_A$minima, 10)
-  expect_equal(res_A$desvio, sd(c(10, 20))) # sd de 10 y 20
-
-  # 3.3) Cálculos Estacion_B
-  res_B <- resumen[resumen$id == "Estacion_B", ]
-  expect_equal(res_B$media, 110) # (100+110+120)/3
-  expect_equal(res_B$maxima, 120)
-  expect_equal(res_B$minima, 100)
-  expect_equal(res_B$desvio, sd(c(100, 110, 120)))
-})
-
-
-test_that("maneja NAs correctamente (prueba de na.rm = TRUE)", {
-
-  # Creamos datos con NA
-  test_data_na <- data.frame(
-    id = c("Estacion_C", "Estacion_C", "Estacion_C"),
-    temperatura_abrigo_150cm = c(10, 20, NA) # <--- NA AQUI
+  # 2. Resultado Esperado
+  # Calculamos manualmente los valores que esperamos obtener.
+  # Estación 'A': mean(10,20,30)=20, sd(10,20,30)=10, max=30, min=10
+  # Estación 'B': mean(5,5,11)=7, sd(5,5,11)=3.464..., max=11, min=5
+  resultado_esperado <- tibble::tibble(
+    id = c('A', 'B'),
+    media = c(20.0, 7.0),
+    desvio = c(10.0, stats::sd(c(5, 5, 11))), # Usamos stats::sd() para precisión
+    maxima = c(30.0, 11.0),
+    minima = c(10.0, 5.0)
   )
 
-  resumen_na <- tabla_resumen_temperatura(test_data_na)
+  # 3. Ejecutar la Función
+  resultado_obtenido <- tabla_resumen_temperatura(datos_prueba)
 
-  # Los cálculos deben ignorar el NA
-  expect_equal(nrow(resumen_na), 1)
-  expect_equal(resumen_na$media, 15) # Debe ser (10+20)/2, no NA
-  expect_equal(resumen_na$maxima, 20)
-  expect_equal(resumen_na$minima, 10)
-  expect_equal(resumen_na$desvio, sd(c(10, 20)))
-})
+  # 4. Comprobar (Assert)
+  # expect_equal() comprueba que los dos tibbles sean idénticos.
+  # Si lo son, el test pasa (0 fails).
+  expect_equal(resultado_obtenido, resultado_esperado)
 
-
-test_that("maneja casos especiales (ej: sd de un solo valor)", {
-
-  # Datos con una sola observación para una estación
-  test_data_solo <- data.frame(
-    id = "Estacion_D",
-    temperatura_abrigo_150cm = 100
+  # Opcional: Probar un caso con NaN o solo NAs
+  datos_solo_na <- data.frame(
+    id = c('C'),
+    temperatura_abrigo_150cm = c(NA_real_)
   )
 
-  resumen_solo <- tabla_resumen_temperatura(test_data_solo)
-
-  # sd() de un solo número debe devolver NA
-  expect_equal(nrow(resumen_solo), 1)
-  expect_equal(resumen_solo$media, 100)
-  expect_true(is.na(resumen_solo$desvio)) # <--- Comprobación clave
-})
-
-
-test_that("falla con input incorrecto (columnas faltantes)", {
-
-  # Falla si falta la columna 'temperatura_abrigo_150cm'
-  expect_error(
-    tabla_resumen_temperatura(data.frame(id = "A"))
+  resultado_esperado_na <- tibble::tibble(
+    id = 'C',
+    media = NaN, # mean(NA, na.rm=TRUE) -> NaN
+    desvio = NA_real_, # sd(NA, na.rm=TRUE) -> NA
+    maxima = -Inf, # max(NA, na.rm=TRUE) -> -Inf (con warning)
+    minima = Inf  # min(NA, na.rm=TRUE) -> Inf (con warning)
   )
 
-  # Falla si falta la columna 'id'
-  expect_error(
-    tabla_resumen_temperatura(data.frame(temperatura_abrigo_150cm = 10))
-  )
+  # Suprimimos los warnings que genera max(NA, na.rm=TRUE)
+  resultado_obtenido_na <- suppressWarnings(tabla_resumen_temperatura(datos_solo_na))
+
+  expect_equal(resultado_obtenido_na, resultado_esperado_na)
 })

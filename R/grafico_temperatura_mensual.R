@@ -48,7 +48,7 @@ grafico_temperatura_mensual <- function(datos, colores = NULL, titulo = "Tempera
     ggplot2::geom_line(linewidth = 1.2) +
     ggplot2::labs(
       title = titulo,
-      x = "Mes del año",
+      x = "Mes del ano",
       y = "Temperatura media"
       # ¡YA NO PONEMOS 'color' AQUÍ!
     ) +
@@ -57,7 +57,11 @@ grafico_temperatura_mensual <- function(datos, colores = NULL, titulo = "Tempera
 
     # 4. Aplicar los colores Y LA ETIQUETA
     #    ¡AQUÍ ESTÁ EL ARREGLO!
-    ggplot2::scale_color_manual(values = colores_a_usar, name = "Estación")
+    ggplot2::scale_color_manual(
+      values = colores_a_usar,
+      name = "Estación",
+      guide = "legend"  # <-- CORRECCIÓN APLICADA
+    )
 
   return(g)
 }

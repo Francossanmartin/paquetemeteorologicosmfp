@@ -6,7 +6,7 @@ Authors@R: c(
     person("Gregorio", "Fernandez", , "Gfernandezperrier@austral.edu.ar", role = c("aut"))
     )
 Description: paquetemeteorologicosmfp no está pensado para ser usado o instalado, su objetivo es aprender a desarrollar paquetes de R.
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
@@ -16,8 +16,16 @@ Depends:
     R (>= 3.5)
 LazyData: true
 Suggests: 
+    curl,
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    tibble
 VignetteBuilder: knitr
 Config/testthat/edition: 3
+Imports: 
+    dplyr,
+    ggplot2,
+    lubridate,
+    magrittr,
+    readr

@@ -4,3 +4,7 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^analisis$
+^datos$
+^LICENSE\.md$
+^\.github$
