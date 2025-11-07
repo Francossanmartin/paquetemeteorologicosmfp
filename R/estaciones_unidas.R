@@ -33,19 +33,7 @@ promedios_mensuales <- estaciones_unidas %>%
     .groups = 'drop'
   )
 
-# ---- VERIFICACIÓN 2 ----
 # (Después de correr este bloque, 'promedios_mensuales'
-# DEBE aparecer en tu "Environment".)
+# DEBE aparecer en  "Environment".)
 
 
-# --- PASO 3: Graficar (Tu código original) ---
-# Ahora este código SÍ encontrará 'promedios_mensuales'
-promedios_mensuales %>%
-  filter(id == "NH0437") %>%
-  ggplot(aes(x = mes, y = temperatura_media)) +
-  geom_line(color = "deepskyblue3", linewidth = 1.2) +
-  labs(title = "Promedio mensual de temperatura (Estación NH0437)",
-       x = "Mes del año",
-       y = "Temperatura media") +
-  scale_x_continuous(breaks = seq(1, 12, by = 1)) +
-  theme_minimal()
