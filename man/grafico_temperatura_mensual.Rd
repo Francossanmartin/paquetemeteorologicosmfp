@@ -19,6 +19,6 @@ se seleccionarán colores aleatorios.}
 Un objeto ggplot.
 }
 \description{
-Genera un gráfico de líneas de la temperatura media mensual
+Genera un grafico de líneas de la temperatura media mensual
 para una o más estaciones.
 }

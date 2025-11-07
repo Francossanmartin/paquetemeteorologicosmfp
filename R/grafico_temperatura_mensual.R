@@ -1,6 +1,6 @@
 #' Grafica el promedio mensual de temperatura
 #'
-#' Genera un gráfico de líneas de la temperatura media mensual
+#' Genera un grafico de líneas de la temperatura media mensual
 #' para una o más estaciones.
 #'
 #' @param datos Un data frame con datos de estaciones (ej: 'estaciones_unidas').
@@ -27,10 +27,10 @@ grafico_temperatura_mensual <- function(datos, colores = NULL, titulo = "Tempera
       .groups = 'drop'
     )
 
-  # Contar cuántas estaciones (colores) necesitamos
+  # Contar cuantas estaciones (colores) necesitamos
   n_estaciones <- dplyr::n_distinct(promedios$id)
 
-  # 2. Lógica de colores (El Bonus)
+  # 2. Logica de colores (El Bonus)
   if (is.null(colores)) {
     # Si no se dan colores, elegir aleatorios de la lista de R
     colores_a_usar <- sample(grDevices::colors(), n_estaciones)
@@ -39,7 +39,7 @@ grafico_temperatura_mensual <- function(datos, colores = NULL, titulo = "Tempera
     colores_a_usar <- colores
   }
 
-  # 3. Crear el gráfico
+  # 3. Crear el grafico
   g <- promedios %>%
     ggplot2::ggplot(ggplot2::aes(x = .data[["mes"]],
                                  y = .data[["temperatura_media"]],
@@ -50,17 +50,15 @@ grafico_temperatura_mensual <- function(datos, colores = NULL, titulo = "Tempera
       title = titulo,
       x = "Mes del ano",
       y = "Temperatura media"
-      # ¡YA NO PONEMOS 'color' AQUÍ!
     ) +
     ggplot2::scale_x_continuous(breaks = seq(1, 12, by = 1)) +
     ggplot2::theme_minimal() +
 
     # 4. Aplicar los colores Y LA ETIQUETA
-    #    ¡AQUÍ ESTÁ EL ARREGLO!
     ggplot2::scale_color_manual(
       values = colores_a_usar,
-      name = "Estación",
-      guide = "legend"  # <-- CORRECCIÓN APLICADA
+      name = "Estacion",
+      guide = "legend"
     )
 
   return(g)
