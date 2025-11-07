@@ -1,18 +1,28 @@
-#' Descarga y lee los datos de una estación meteorológica
+#' Descargar y leer datos de una estación
 #'
-#' Verifica si un archivo de estación existe localmente. Si no,
-#' lo descarga desde el repositorio de GitHub. Finalmente,
-#' lee y devuelve los datos.
+#' @description
+#' Descarga un archivo CSV de una estación específica desde un repositorio
+#' de GitHub y lo lee en un data frame (tibble).
 #'
-#' @param id_estacion El ID de la estación (ej: "NH0437").
-#' @param ruta_guardado La ruta completa donde guardar el .csv (ej: "data-raw/NH0437.csv").
-#'        (Nota: la función creará el directorio si no existe).
+#' Si el archivo ya existe en la 'ruta_guardado', lo lee directamente.
+#'
+#' @param id_estacion El ID de la estación (ej: "NH0046").
+#' @param ruta_guardado La ruta local completa donde guardar/leer el archivo
+#'   (ej: "data-raw/NH0046.csv").
 #'
 #' @return Un data frame (tibble) con los datos de la estación.
 #' @export
 #'
-#' @importFrom readr read_csv
 #' @importFrom utils download.file
+#' @importFrom readr read_csv cols
+#'
+#' @examples
+#' # Este ejemplo usa un archivo temporal para no guardar nada permanentemente
+#' # \donttest{
+#' #   temp_file <- tempfile(fileext = ".csv")
+#' #   datos_ejemplo <- descargar_y_leer_estacion("NH0046", temp_file)
+#' #   print(datos_ejemplo)
+#' # }
 descargar_y_leer_estacion <- function(id_estacion, ruta_guardado) {
 
   # 1. Construir la URL de descarga

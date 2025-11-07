@@ -4,13 +4,19 @@
 #' temperatura_abrigo_150cm para cada estación en un data frame.
 #'
 #' @param datos Un data frame que contenga 'id' y 'temperatura_abrigo_150cm'.
-#'        (Idealmente, el objeto 'estaciones_unidas').
 #'
 #' @return Un data frame (tibble) resumido por estación.
 #' @export
 #'
 #' @importFrom dplyr group_by summarise
 #' @importFrom stats sd
+#'
+#' @examples
+#' # Para ejecutar este ejemplo, primero debes cargar los datos
+#' # que agregaremos al paquete más adelante.
+#' #
+#' # data(estaciones_ejemplo)
+#' # tabla_resumen_temperatura(estaciones_ejemplo)
 tabla_resumen_temperatura <- function(datos) {
 
   # Usamos .data[[]] para evitar notas de R CMD check
