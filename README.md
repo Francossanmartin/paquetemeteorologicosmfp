@@ -2,7 +2,7 @@
 # paquetemeteorologicosmfp
 
 
-
+# paquetemeteorologicosmfp <img src="man/logo/logo.png" align="right" width="150"/>
 
 
 ## Autores
@@ -41,6 +41,18 @@ Así es como debería usarse nuestro paquete:
 
 ``` r
 library(paquetemeteorologicosmfp)
+```
+
+``` r
+NH0046 <- descargar_y_leer_estacion("NH0046", "data-raw/NH0046.csv")
+```
+
+``` r
+tabla_resumen_temperatura(NH0046)
+```
+
+``` r
+grafico_temperatura_mensual(NH0046, colores = "steelblue", titulo = "Temperatura promedio mensual - NH0046")
 ```
 
 ## Contribuciones
