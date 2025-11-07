@@ -1,26 +1,7 @@
-
 # paquetemeteorologicosmfp
 
-
-
-
-
-
-
- <img src="man/logo/logo.png" align="right" width="150"/>
-
-
-
-
-
-
-
-
-
-
-
-
-
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<img src="man/logo/logo.png" align="right" width="150"/>
 
 ## Autores
 
@@ -36,7 +17,7 @@ El paquete es de prueba, no esta pensado para ser utilizado.
 ## Instalación
 
 Puede instalar la version de paquetemeteorologicosmfp desde
-[GitHub](https://github.com/) con:
+[GitHub](https://github.com/Francossanmartin/paquetemeteorologicosmfp) con:
 
 ``` r
 # install.packages("pak")
@@ -90,6 +71,11 @@ Una vez que termines tus modificaciones, subilas a tu repositorio y abrí un Pul
 Asegurate de incluir una descripción clara del objetivo del cambio y, si es posible, ejemplos o pruebas que faciliten la revisión.
 
 Agradecemos tu colaboración 
-Te recomendamos revisar el Código de Conducta
+Te recomendamos revisar el [Código de Conducta](CODE_OF_CONDUCT.md)
  antes de contribuir, para mantener un entorno positivo y respetuoso dentro de la comunidad del paquete.
+ 
+---
 
+## Licencia
+
+El código de este paquete está disponible bajo la licencia [MIT](LICENSE).
