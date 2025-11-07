@@ -1,26 +1,11 @@
 # Cargar librerías necesarias para el test
-# Asegúrate de tenerlos instalados: install.packages(c("testthat", "dplyr", "tibble"))
 library(testthat)
 library(dplyr)
 library(tibble)
 
-# --- Definición de la Función ---
-# Pega tu función aquí si no estás en un entorno de paquete
-tabla_resumen_temperatura <- function(datos) {
+# --- YA NO ESTÁ LA DEFINICIÓN DE LA FUNCIÓN ---
+# El paquete la cargará automáticamente.
 
-  # Usamos .data[[]] para evitar notas de R CMD check
-  resumen <- datos %>%
-    dplyr::group_by(.data[["id"]]) %>%
-    dplyr::summarise(
-      media = mean(.data[["temperatura_abrigo_150cm"]], na.rm = TRUE),
-      desvio = stats::sd(.data[["temperatura_abrigo_150cm"]], na.rm = TRUE),
-      maxima = max(.data[["temperatura_abrigo_150cm"]], na.rm = TRUE),
-      minima = min(.data[["temperatura_abrigo_150cm"]], na.rm = TRUE),
-      .groups = 'drop'
-    )
-
-  return(resumen)
-}
 
 # --- Definición del Test ---
 
@@ -47,6 +32,7 @@ test_that("la función calcula correctamente las estadísticas resumen", {
   )
 
   # 3. Ejecutar la Función
+  # AHORA SÍ LLAMA A LA FUNCIÓN REAL DEL PAQUETE
   resultado_obtenido <- tabla_resumen_temperatura(datos_prueba)
 
   # 4. Comprobar (Assert)
