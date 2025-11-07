@@ -4,9 +4,9 @@
 #' para una o más estaciones.
 #'
 #' @param datos Un data frame con datos de estaciones (ej: 'estaciones_unidas').
-#'        Debe tener 'fecha', 'id' y 'temperatura_abrigo_150cm'.
+#'   Debe tener 'fecha', 'id' y 'temperatura_abrigo_150cm'.
 #' @param colores Un vector de nombres de colores. Si es NULL (por defecto),
-#'        se seleccionarán colores aleatorios.
+#'   se seleccionarán colores aleatorios.
 #' @param titulo El título del gráfico. El valor por defecto es "Temperatura".
 #'
 #' @return Un objeto ggplot.
@@ -49,14 +49,15 @@ grafico_temperatura_mensual <- function(datos, colores = NULL, titulo = "Tempera
     ggplot2::labs(
       title = titulo,
       x = "Mes del año",
-      y = "Temperatura media",
-      color = "Estación"
+      y = "Temperatura media"
+      # ¡YA NO PONEMOS 'color' AQUÍ!
     ) +
     ggplot2::scale_x_continuous(breaks = seq(1, 12, by = 1)) +
     ggplot2::theme_minimal() +
 
-    # 4. Aplicar los colores (aleatorios o definidos)
-    ggplot2::scale_color_manual(values = colores_a_usar)
+    # 4. Aplicar los colores Y LA ETIQUETA
+    #    ¡AQUÍ ESTÁ EL ARREGLO!
+    ggplot2::scale_color_manual(values = colores_a_usar, name = "Estación")
 
   return(g)
 }
