@@ -1,0 +1,16 @@
+---
+title: "Tutorial: Uso de paquetemeteorologicosmfp"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tutorial: Uso de paquetemeteorologicosmfp}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+# Carga nuestro propio paquete para que esté disponible en la viñeta
+library(paquetemeteorologicosmfp)
