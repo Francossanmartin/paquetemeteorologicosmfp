@@ -2,7 +2,8 @@
 
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/Francossanmartin/paquetemeteorologicosmfp/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Francossanmartin/paquetemeteorologicosmfp/actions/workflows/R-CMD-check.yaml)
-<img src="man/logo/logo.png" align="right" width="150"/>
+<img src="man/figures/logo.png" align="right" width="150"/>
+
 
 ## Autores
 
