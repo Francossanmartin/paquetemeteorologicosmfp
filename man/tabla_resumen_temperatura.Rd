@@ -17,9 +17,9 @@ Calcula la media, desvío estándar, máxima y mínima
 temperatura_abrigo_150cm para cada estación en un data frame.
 }
 \examples{
-# Para ejecutar este ejemplo, primero debes cargar los datos
-# que agregaremos al paquete más adelante.
-#
-# data(estaciones_ejemplo)
-# tabla_resumen_temperatura(estaciones_ejemplo)
+datos_ejemplo <- data.frame(
+  id = c("A", "A", "B", "B"),
+  temperatura_abrigo_150cm = c(20, 22, 18, 19)
+)
+tabla_resumen_temperatura(datos_ejemplo)
 }

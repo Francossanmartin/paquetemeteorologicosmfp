@@ -22,3 +22,15 @@ Un objeto ggplot.
 Genera un grafico de líneas de la temperatura media mensual
 para una o más estaciones.
 }
+\examples{
+datos_ejemplo <- data.frame(
+  id = rep(c("A", "B"), each = 6),
+  fecha = rep(
+    seq.Date(as.Date("2024-01-01"), by = "month", length.out = 6),
+    times = 2
+  ),
+  temperatura_abrigo_150cm = c(20, 21, 22, 23, 24, 25,
+                               18, 19, 20, 21, 22, 23)
+)
+grafico_temperatura_mensual(datos_ejemplo)
+}

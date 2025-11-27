@@ -22,10 +22,9 @@ de GitHub y lo lee en un data frame (tibble).
 Si el archivo ya existe en la 'ruta_guardado', lo lee directamente.
 }
 \examples{
-# Este ejemplo usa un archivo temporal para no guardar nada permanentemente
-# \donttest{
-#   temp_file <- tempfile(fileext = ".csv")
-#   datos_ejemplo <- descargar_y_leer_estacion("NH0046", temp_file)
-#   print(datos_ejemplo)
-# }
+\donttest{
+temp_file <- tempfile(fileext = ".csv")
+datos <- descargar_y_leer_estacion("NH0046", temp_file)
+head(datos)
+}
 }
