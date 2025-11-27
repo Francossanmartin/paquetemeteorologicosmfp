@@ -8,8 +8,7 @@
 #' @return Un data frame (tibble) resumido por estación.
 #' @export
 #'
-#' @importFrom dplyr group_by summarise
-#' @importFrom stats sd
+#' @importFrom magrittr %>%
 #'
 #' @examples
 #' # Para ejecutar este ejemplo, primero debes cargar los datos

@@ -12,10 +12,7 @@
 #' @return Un objeto ggplot.
 #' @export
 #'
-#' @import ggplot2
-#' @importFrom dplyr mutate group_by summarise n_distinct
-#' @importFrom lubridate month
-#' @importFrom grDevices colors
+
 grafico_temperatura_mensual <- function(datos, colores = NULL, titulo = "Temperatura") {
 
   # 1. Procesar los datos

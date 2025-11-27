@@ -13,9 +13,6 @@
 #' @return Un data frame (tibble) con los datos de la estación.
 #' @export
 #'
-#' @importFrom utils download.file
-#' @importFrom readr read_csv cols
-#'
 #' @examples
 #' # Este ejemplo usa un archivo temporal para no guardar nada permanentemente
 #' # \donttest{
