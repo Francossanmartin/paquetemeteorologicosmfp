@@ -80,4 +80,4 @@ Te recomendamos revisar el [Código de Conducta](CODE_OF_CONDUCT.md)
 
 ## Licencia
 
-El código de este paquete está disponible bajo la licencia [MIT](LICENSE).
+El código de este paquete está disponible bajo la licencia [MIT](LICENSE.md).
