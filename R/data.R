@@ -1,8 +1,65 @@
-#' Datos meteorológicos unificados de 5 estaciones.
+#' Datos meteorológicos unificados de 5 estaciones
 #'
 #' Un data frame (tibble) que contiene los datos combinados de las
 #' estaciones NH0046, NH0098, NH0437, NH0472 y NH0910.
 #'
-#' @format Un tibble con varias filas y 35 variables (o las que correspondan).
+#' @format Un tibble con varias filas y 35 columnas:
+#' \describe{
+#'   \item{id}{Identificador de la estación.}
+#'   \item{fecha}{Fecha de la observación (Date).}
+#'
+#'   \item{temperatura_abrigo_150cm}{Temperatura del aire a 1.5 m (°C).}
+#'   \item{temperatura_abrigo_150cm_maxima}{Temperatura máxima a 1.5 m (°C).}
+#'   \item{temperatura_abrigo_150cm_minima}{Temperatura mínima a 1.5 m (°C).}
+#'
+#'   \item{temperatura_intemperie_5cm_minima}{Temperatura mínima al aire libre a 5 cm (°C).}
+#'   \item{temperatura_intemperie_50cm_minima}{Temperatura mínima al aire libre a 50 cm (°C).}
+#'
+#'   \item{temperatura_suelo_5cm_media}{Temperatura media del suelo a 5 cm (°C).}
+#'   \item{temperatura_suelo_10cm_media}{Temperatura media del suelo a 10 cm (°C).}
+#'
+#'   \item{temperatura_inte_5cm}{Temperatura al aire libre a 5 cm (°C).}
+#'
+#'   \item{temperatura_intemperie_150cm_minima}{Temperatura mínima al aire libre a 150 cm (°C).}
+#'
+#'   \item{humedad_suelo}{Humedad del suelo (%).}
+#'
+#'   \item{precipitacion_pluviometrica}{Precipitación acumulada (mm).}
+#'   \item{granizo}{Indicador de ocurrencia de granizo (0/1).}
+#'   \item{nieve}{Indicador de ocurrencia de nieve (0/1).}
+#'
+#'   \item{heliofania_efectiva}{Horas de brillo solar efectivo.}
+#'   \item{heliofania_relativa}{Brillo solar relativo (%).}
+#'
+#'   \item{tesion_vapor_media}{Tensión de vapor media.}
+#'
+#'   \item{humedad_media}{Humedad ambiente media (%).}
+#'   \item{humedad_media_8_14_20}{Humedad media a las 8, 14 y 20 h (%).}
+#'
+#'   \item{rocio_medio}{Temperatura de rocío media (°C).}
+#'
+#'   \item{duracion_follaje_mojado}{Duración del follaje mojado (horas).}
+#'
+#'   \item{velocidad_viento_200cm_media}{Velocidad media del viento a 2 m (m/s).}
+#'   \item{direccion_viento_200cm}{Dirección del viento a 2 m (grados).}
+#'
+#'   \item{velocidad_viento_1000cm_media}{Velocidad media del viento a 10 m (m/s).}
+#'   \item{direccion_viento_1000cm}{Dirección del viento a 10 m (grados).}
+#'
+#'   \item{velocidad_viento_maxima}{Velocidad máxima del viento (m/s).}
+#'
+#'   \item{presion_media}{Presión atmosférica media (hPa).}
+#'
+#'   \item{radiacion_global}{Radiación solar global (W/m²).}
+#'   \item{radiacion_neta}{Radiación neta (W/m²).}
+#'
+#'   \item{evaporacion_tanque}{Evaporación medida en tanque (mm).}
+#'   \item{evapotranspiracion_potencial}{Evapotranspiración potencial (mm).}
+#'
+#'   \item{profundidad_napa}{Profundidad de la napa freática (m).}
+#'   \item{horas_frio}{Horas de frío acumuladas.}
+#'   \item{unidad_frio}{Unidades de frío acumuladas.}
+#' }
+#'
 #' @source Script de procesamiento interno del paquete.
 "estaciones_unidas"
