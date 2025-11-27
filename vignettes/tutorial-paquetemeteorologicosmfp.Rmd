@@ -14,3 +14,61 @@ knitr::opts_chunk$set(
 )
 # Carga nuestro propio paquete para que esté disponible en la viñeta
 library(paquetemeteorologicosmfp)
+```
+
+## Introducción
+
+Esta viñeta muestra cómo usar las funciones principales del paquete
+`paquetemeteorologicosmfp` con el conjunto de datos `estaciones_unidas`.
+
+El flujo básico es:
+
+1. Cargar los datos de ejemplo.  
+2. Resumir la temperatura por estación.  
+3. Graficar la temperatura media mensual.  
+4. Descargar datos de una estación desde GitHub.
+
+## Datos de ejemplo: `estaciones_unidas`
+
+```{r}
+data("estaciones_unidas")
+dplyr::glimpse(estaciones_unidas)
+```
+
+## Resumen de temperatura por estación
+
+```{r}
+resumen_temp <- tabla_resumen_temperatura(estaciones_unidas)
+resumen_temp
+```
+
+
+---
+
+## 2) Gráfico de temperatura media mensual
+
+
+```{r}
+datos_ejemplo <- dplyr::filter(
+  estaciones_unidas,
+  id %in% c("NH0046", "NH0098")
+)
+
+g <- grafico_temperatura_mensual(
+  datos_ejemplo,
+  titulo = "Temperatura media mensual"
+)
+g
+```
+
+
+---
+
+## Descargar datos de una estación desde GitHub
+
+```{r, eval = FALSE}
+temp_file <- tempfile(fileext = ".csv")
+datos_estacion <- descargar_y_leer_estacion("NH0046", temp_file)
+head(datos_estacion)
+```
+
